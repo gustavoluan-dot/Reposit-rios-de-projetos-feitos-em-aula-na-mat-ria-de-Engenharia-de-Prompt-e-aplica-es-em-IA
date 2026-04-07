@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-glass-bg: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-accent-purple: #a855f7;
+  --color-accent-blue: #3b82f6;
+  --color-accent-pink: #ec4899;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0a0a0c] text-white font-sans overflow-x-hidden min-h-screen;
+  }
+}
+
+/* Efeito de Vidro (Glassmorphism) */
+.glass-card {
+  @apply bg-[var(--color-glass-bg)] border border-[var(--color-glass-border)] rounded-3xl backdrop-blur-xl shadow-2xl;
+}
+
+.glass-nav {
+  @apply bg-black/20 border-b border-white/10 backdrop-blur-lg sticky top-0 z-50;
+}
+
+/* Blobs Animados ao Fundo */
+.blob-container {
+  @apply fixed inset-0 -z-10 overflow-hidden pointer-events-none;
+}
+
+.blob {
+  @apply absolute rounded-full mix-blend-screen filter blur-[80px] opacity-30 animate-pulse;
+}
+
+.blob-1 {
+  @apply w-[500px] h-[500px] bg-[var(--color-accent-purple)] -top-20 -left-20;
+  animation: float 20s infinite alternate;
+}
+
+.blob-2 {
+  @apply w-[400px] h-[400px] bg-[var(--color-accent-blue)] bottom-20 -right-20;
+  animation: float 25s infinite alternate-reverse;
+}
+
+.blob-3 {
+  @apply w-[300px] h-[300px] bg-[var(--color-accent-pink)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  animation: float 15s infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 100px) scale(1.1); }
+}
+
+/* Estilo da Área de Drop */
+.drop-zone {
+  @apply border-2 border-dashed border-white/20 rounded-2xl p-12 transition-all cursor-pointer hover:border-[var(--color-accent-purple)] hover:bg-white/5 flex flex-col items-center justify-center gap-4;
+}
+
+.drop-zone.active {
+  @apply border-[var(--color-accent-purple)] bg-white/10 scale-[1.02];
+}
+
+/* Botão Estilo Moderno */
+.btn-primary {
+  @apply bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-accent-blue)] px-8 py-3 rounded-full font-bold text-white shadow-lg shadow-purple-500/20 hover:scale-105 active:scale-95 transition-all;
+}
